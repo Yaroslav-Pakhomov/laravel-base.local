@@ -17,38 +17,20 @@ Route::get('/', static function () {
     return view('welcome');
 });
 
-Route::get('/page', static function () {
-    return 'Create page';
-});
+Route::get('/page', 'PageController@index');
 
-Route::get('/page_news', static function () {
-    return 'Create page_news';
-});
+Route::get('/page_news', 'PAgeController@news');
 
-Route::get('/page_contact', static function () {
-    return 'Create page_contact';
-});
+Route::get('page_contact', 'PageController@contact');
 
-Route::get('/page_about', static function () {
-    return 'Create page_about';
-});
+Route::get('/page_contact', 'PageController@about');
 
-Route::get('/page_catalog', static function () {
-    return 'Create page_catalog';
-});
+Route::get('/page_catalog', 'PageController@catalog');
 
-Route::get('/page_categories', static function () {
-    return 'Create page_categories';
-});
+Route::get('/page_categories', 'PageController@categories');
 
-Route::get('/page_blog', static function () {
-    return 'Create page_blog';
-});
+Route::get('/page_blog', 'PageController@blog');
 
-Route::get('/page_tags', static function () {
-    return 'Create page_tags';
-});
+Route::get('/page_tags', "PageController@tags");
 
-Route::get('/page_articles', static function () {
-    return 'Create page_articles';
-});
+Route::get('/page_articles', 'PageController@articles');
