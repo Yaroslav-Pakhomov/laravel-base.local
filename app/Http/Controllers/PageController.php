@@ -52,4 +52,5 @@ class PageController extends Controller
     {
         return 'Create page_articles';
     }
+
 }
