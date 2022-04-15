@@ -13,42 +13,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', static function () {
     return view('welcome');
 });
 
-Route::get('/page', function () {
+Route::get('/page', static function () {
     return 'Create page';
 });
 
-Route::get('/page_news', function () {
+Route::get('/page_news', static function () {
     return 'Create page_news';
 });
 
-Route::get('/page_contact', function () {
+Route::get('/page_contact', static function () {
     return 'Create page_contact';
 });
 
-Route::get('/page_about', function () {
+Route::get('/page_about', static function () {
     return 'Create page_about';
 });
 
-Route::get('/page_catalog', function () {
+Route::get('/page_catalog', static function () {
     return 'Create page_catalog';
 });
 
-Route::get('/page_categories', function () {
+Route::get('/page_categories', static function () {
     return 'Create page_categories';
 });
 
-Route::get('/page_blog', function () {
+Route::get('/page_blog', static function () {
     return 'Create page_blog';
 });
 
-Route::get('/page_tags', function () {
+Route::get('/page_tags', static function () {
     return 'Create page_tags';
 });
 
-Route::get('/page_articles', function () {
+Route::get('/page_articles', static function () {
     return 'Create page_articles';
 });
