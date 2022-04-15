@@ -48,3 +48,7 @@ Route::get('/page_blog', function () {
 Route::get('/page_tags', function () {
     return 'Create page_tags';
 });
+
+Route::get('/page_articles', function () {
+    return 'Create page_articles';
+});
