@@ -7,7 +7,6 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use JetBrains\PhpStorm\NoReturn;
 
-//
 
 class TagController extends Controller
 {
