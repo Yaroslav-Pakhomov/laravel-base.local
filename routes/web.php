@@ -34,3 +34,18 @@ Route::get('/page_blog', 'PageController@blog');
 Route::get('/page_tags', "PageController@tags");
 
 Route::get('/page_articles', 'PageController@articles');
+
+// Post
+Route::get('/post', 'PostController@index');
+
+// Animal
+Route::get('/animal', 'AnimalController@index');
+
+// Article
+Route::get('/article', 'ArticleController@index');
+
+// Catalog
+Route::get('/catalog', 'CatalogController@index');
+
+// Tag
+Route::get('/tag', 'TagController@index');
