@@ -14,6 +14,7 @@ class PostController extends Controller
 {
     #[NoReturn] public function index(): void
     {
+        dump('All');
         $posts = Post::all();
         foreach ($posts as $post):
             dump($post->title);
@@ -27,6 +28,7 @@ class PostController extends Controller
         echo "</br>";
         // $posts = Post::where('is_published', 1)->first();
         // $posts = Post::where('is_published', 0)->first();
+        dump('Is published');
         $posts = Post::where('is_published', 1)->get();
         foreach ($posts as $post):
             dump($post->title);
@@ -38,6 +40,7 @@ class PostController extends Controller
         endforeach;
         echo "</br>";
 
+        dump('No published, no likes');
         $posts = Post::where('is_published', 0)
             ->where('likes', 0)->get();
         foreach ($posts as $post):
