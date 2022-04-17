@@ -8,12 +8,16 @@ use App\Models\Post;
 use JetBrains\PhpStorm\NoReturn;
 
 /**
- * @method static dump()
+ *
  */
 class PostController extends Controller
 {
     #[NoReturn] public function index(): void
     {
+        $post = Post::find(1);
+        dump($post);
+        echo "</br>";
+        echo "</br>";
         dump('All');
         $posts = Post::all();
         foreach ($posts as $post):
@@ -55,6 +59,38 @@ class PostController extends Controller
         dd('end');
         // echo "</br>";
         // return 'Create post';
+    }
+
+    public function create(): void
+    {
+        $arrPosts = [
+            [
+                'title'        => 'Добавленный Пост 1',
+                'content'      => 'Содержание добавленного Поста 1',
+                'image'        => 'add_image_1',
+                'likes'        => 10,
+                'is_published' => 1
+            ],
+            [
+                'title'        => 'Добавленный Пост 2',
+                'content'      => 'Содержание добавленного Поста 2',
+                'image'        => 'add_image_2',
+                'likes'        => 10,
+                'is_published' => 1
+            ]
+        ];
+        foreach ($arrPosts as $post):
+            dump($post);
+            Post::create($post);
+            // Post::create([
+            //     'title' => $post['title'],
+            //     'content' => $post['content'],
+            //     'image' => $post['image'],
+            //     'likes' => $post['likes'],
+            //     'is_published' => $post['is_published'],
+            // ]);
+        endforeach;
+        dd('created');
     }
 
 }
