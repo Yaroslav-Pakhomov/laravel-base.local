@@ -26,6 +26,9 @@ class CreateCartsTable extends Migration
             $table->integer('quantity');
             $table->float('total');
             $table->timestamps();
+
+            // "Мягкое" удаление
+            $table->softDeletes();
         });
     }
 

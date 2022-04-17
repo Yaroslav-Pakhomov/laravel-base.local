@@ -23,6 +23,9 @@ class CreateCatalogsTable extends Migration
             $table->text('description');
             $table->float('price');
             $table->timestamps();
+
+            // "Мягкое" удаление
+            $table->softDeletes();
         });
     }
 
