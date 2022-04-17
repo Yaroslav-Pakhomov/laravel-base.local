@@ -27,4 +27,29 @@ class ArticleController extends Controller
         // return 'Create post';
     }
 
+    public function create()
+    {
+        $arrArticles = [
+            [
+                'title'       => 'Добавленная Статья 1',
+                'content'     => 'Содержание добавленной Статьи 1',
+                'category_id' => 2,
+                'tag_id'      => 1,
+            ],
+            [
+                'title'       => 'Добавленная Статья 2',
+                'content'     => 'Содержание добавленной Статьи 2',
+                'category_id' => 1,
+                'tag_id'      => 2,
+            ],
+        ];
+        foreach ($arrArticles as $article):
+            dump($article);
+            Article::create($article);
+        endforeach;
+
+        dd('created');
+    }
+
+
 }
