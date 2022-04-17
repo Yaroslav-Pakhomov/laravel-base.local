@@ -83,14 +83,33 @@ class PostController extends Controller
             dump($post);
             Post::create($post);
             // Post::create([
-            //     'title' => $post['title'],
-            //     'content' => $post['content'],
-            //     'image' => $post['image'],
-            //     'likes' => $post['likes'],
+            //     'title'        => $post['title'],
+            //     'content'      => $post['content'],
+            //     'image'        => $post['image'],
+            //     'likes'        => $post['likes'],
             //     'is_published' => $post['is_published'],
             // ]);
         endforeach;
         dd('created');
+    }
+
+    public function update(): void
+    {
+        $post = Post::find(6);
+        dump('Выбранный Пост');
+        dump($post);
+        $post->likes++;
+        $upPost = [
+            'title'        => 'Обновлённый Пост 1',
+            'content'      => 'Содержание обновлённого Поста 1',
+            'image'        => 'update_image_1',
+            'likes'        => $post->likes,
+            'is_published' => $post->is_published
+        ];
+        dump('Обновление Поста');
+        dump($upPost);
+        $post->update($upPost);
+        dd('Обновлено');
     }
 
 }
