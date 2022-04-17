@@ -61,7 +61,7 @@ class PostController extends Controller
         // return 'Create post';
     }
 
-    public function create(): void
+    #[NoReturn] public function create(): void
     {
         $arrPosts = [
             [
@@ -93,7 +93,7 @@ class PostController extends Controller
         dd('created');
     }
 
-    public function update(): void
+    #[NoReturn] public function update(): void
     {
         $post = Post::find(6);
         dump('Выбранный Пост');
@@ -110,6 +110,21 @@ class PostController extends Controller
         dump($upPost);
         $post->update($upPost);
         dd('Обновлено');
+    }
+
+    #[NoReturn] public function delete(): void
+    {
+        //Восстановление удалённого элемента
+        $post = Post::withTrashed()->find(13);
+        $post->restore();
+
+        // $post = Post::find(13);
+        if (isset($post)):
+            dump($post->title);
+            $post->delete();
+            dd('Элемент удален');
+        endif;
+        dd('Элемент не найден');
     }
 
 }

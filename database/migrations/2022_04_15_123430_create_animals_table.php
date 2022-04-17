@@ -23,6 +23,9 @@ class CreateAnimalsTable extends Migration
             $table->string('breed');
             $table->text('description');
             $table->timestamps();
+
+            // "Мягкое" удаление
+            $table->softDeletes();
         });
     }
 

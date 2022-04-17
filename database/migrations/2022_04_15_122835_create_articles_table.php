@@ -24,6 +24,9 @@ class CreateArticlesTable extends Migration
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('tag_id');
             $table->timestamps();
+
+            // "Мягкое" удаление
+            $table->softDeletes();
         });
     }
 

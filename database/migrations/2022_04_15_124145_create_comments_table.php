@@ -24,6 +24,9 @@ class CreateCommentsTable extends Migration
             $table->date('created_at');
             $table->unsignedBigInteger('likes')->nullable();
             $table->timestamps();
+
+            // "Мягкое" удаление
+            $table->softDeletes();
         });
     }
 

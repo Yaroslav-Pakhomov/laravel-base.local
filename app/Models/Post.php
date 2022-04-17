@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static where(string $string, int $int)
@@ -15,6 +16,9 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    // "Мягкое" удаление
+    use SoftDeletes;
 
     protected $table = 'posts';
     // Разрешаем добавление данных, способы разрешения:
