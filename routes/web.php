@@ -37,12 +37,14 @@ Route::get('/page_articles', 'PageController@articles');
 
 // Post
 Route::get('/post', 'PostController@index');
+Route::get('/post/create', 'PostController@create');
 
 // Animal
 Route::get('/animal', 'AnimalController@index');
 
 // Article
 Route::get('/article', 'ArticleController@index');
+Route::get('/article/create', 'ArticleController@create');
 
 // Catalog
 Route::get('/catalog', 'CatalogController@index');
