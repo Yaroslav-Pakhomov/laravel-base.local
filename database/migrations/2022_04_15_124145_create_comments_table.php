@@ -21,7 +21,6 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->string('Author')->nullable();
             $table->text('text');
-            $table->date('created_at');
             $table->unsignedBigInteger('likes')->nullable();
             $table->timestamps();
 

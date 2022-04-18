@@ -21,7 +21,6 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('characteristics');
-            $table->string('characteristics');
             $table->float('price');
             $table->integer('quantity');
             $table->float('total');
