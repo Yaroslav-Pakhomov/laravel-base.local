@@ -119,12 +119,53 @@ class PostController extends Controller
         $post->restore();
 
         // $post = Post::find(13);
-        if (isset($post)):
-            dump($post->title);
-            $post->delete();
-            dd('Элемент удален');
-        endif;
-        dd('Элемент не найден');
+        dump($post->title);
+        $post->delete();
+        dd('Элемент удален');
+    }
+
+    // Комбинированные запросы
+    // firstOrCreate - достаём уникальный объект по атрибуту из базы, если не находит, то создаёт (проверяет на дубликаты)
+    // updateOrCreate - обновляет записи, если не находит, то создаёт (проверка на дубликат)
+    #[NoReturn] public function firstOrCreate(): void
+    {
+        // $post = Post::find(13);
+        $anotherPost = [
+            // 'title'        => 'Другой Пост 2',
+            'content'      => 'Содержание другого Поста 2',
+            'image'        => 'another_image_2',
+            'likes'        => 500,
+            'is_published' => 1
+        ];
+
+        $post = Post::firstOrCreate([
+            'title' => 'Уникальный Пост 3'
+        ], [
+            // 'title'        => $anotherPost['title'],
+            'content'      => $anotherPost['content'],
+            'image'        => $anotherPost['image'],
+            'likes'        => $anotherPost['likes'],
+            'is_published' => $anotherPost['is_published']
+        ]);
+        dump($post->content);
+        dd('Final');
+    }
+
+    #[NoReturn] public function updateOrCreate(): void
+    {
+        $anotherPost = [
+            'title'        => 'Add Post 123',
+            'content'      => 'Содержание обновлённого Поста 123',
+            'image'        => 'update_image_1',
+            'likes'        => 500,
+            'is_published' => 1
+        ];
+
+        $post = Post::updateOrCreate([
+            'title' => 'Уникальный Пост 3'
+        ], $anotherPost);
+        dump($post->content);
+        dd('Final');
     }
 
 }
