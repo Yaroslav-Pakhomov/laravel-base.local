@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static where(string $string, int $int)
  * @method static find(int $int)
  * @method static create(array $array)
+ * @method static firstOrCreate(array $array, array $array1)
+ * @method static updateOrCreate(string[] $array, array $array1)
  */
 class Post extends Model
 {

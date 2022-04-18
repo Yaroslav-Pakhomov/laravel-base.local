@@ -40,6 +40,8 @@ Route::get('/post', 'PostController@index');
 Route::get('/post/create', 'PostController@create');
 Route::get('/post/update', 'PostController@update');
 Route::get('/post/delete', 'PostController@delete');
+Route::get('/post/first_or_create', 'PostController@firstOrCreate');
+Route::get('/post/update_or_create', 'PostController@updateOrCreate');
 
 // Animal
 Route::get('/animal', 'AnimalController@index');
