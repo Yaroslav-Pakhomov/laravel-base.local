@@ -36,7 +36,7 @@ Route::get('/page_tags', "PageController@tags");
 Route::get('/page_articles', 'PageController@articles');
 
 // Post
-Route::get('/post', 'PostController@index');
+Route::get('/post', 'PostController@index')->name('post.index');
 Route::get('/post/create', 'PostController@create');
 Route::get('/post/update', 'PostController@update');
 Route::get('/post/delete', 'PostController@delete');
@@ -55,3 +55,13 @@ Route::get('/catalog', 'CatalogController@index');
 
 // Tag
 Route::get('/tag', 'TagController@index');
+
+
+// About
+Route::get('/about', 'AboutController@index')->name('about.index');
+
+// Contacts
+Route::get('/contacts', 'ContactController@index')->name('contact.index');
+
+// Main
+Route::get('/main', 'MainController@index')->name('main.index');

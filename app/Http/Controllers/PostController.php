@@ -5,6 +5,9 @@ declare(strict_types = 1);
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use JetBrains\PhpStorm\NoReturn;
 
 /**
@@ -12,51 +15,57 @@ use JetBrains\PhpStorm\NoReturn;
  */
 class PostController extends Controller
 {
-    #[NoReturn] public function index(): void
+    #[NoReturn] public function index(): Application|View|Factory
     {
-        $post = Post::find(1);
-        dump($post);
-        echo "</br>";
-        echo "</br>";
-        dump('All');
+        // $post = Post::find(1);
+        // dump($post);
+        // echo "</br>";
+        // echo "</br>";
+        // dump('All');
+        // $posts = Post::all();
+        // foreach ($posts as $post):
+        //     dump($post->title);
+        //     dump($post->content);
+        //     dump($post->image);
+        //     dump($post->likes);
+        //     dump($post->is_published);
+        //     echo '</br>';
+        // endforeach;
+        // echo '</br>';
+        // echo "</br>";
+        // // $posts = Post::where('is_published', 1)->first();
+        // // $posts = Post::where('is_published', 0)->first();
+        // dump('Is published');
+        // $posts = Post::where('is_published', 1)->get();
+        // foreach ($posts as $post):
+        //     dump($post->title);
+        //     dump($post->content);
+        //     dump($post->image);
+        //     dump($post->likes);
+        //     dump($post->is_published);
+        //     echo "</br>";
+        // endforeach;
+        // echo "</br>";
+        //
+        // dump('No published, no likes');
+        // $posts = Post::where('is_published', 0)
+        //     ->where('likes', 0)->get();
+        // foreach ($posts as $post):
+        //     dump($post->title);
+        //     dump($post->content);
+        //     dump($post->image);
+        //     dump($post->likes);
+        //     dump($post->is_published);
+        // endforeach;
+        // echo "</br>";
+        // echo "</br>";
+        // echo "</br>";
+
         $posts = Post::all();
-        foreach ($posts as $post):
-            dump($post->title);
-            dump($post->content);
-            dump($post->image);
-            dump($post->likes);
-            dump($post->is_published);
-            echo '</br>';
-        endforeach;
-        echo '</br>';
-        echo "</br>";
-        // $posts = Post::where('is_published', 1)->first();
-        // $posts = Post::where('is_published', 0)->first();
-        dump('Is published');
-        $posts = Post::where('is_published', 1)->get();
-        foreach ($posts as $post):
-            dump($post->title);
-            dump($post->content);
-            dump($post->image);
-            dump($post->likes);
-            dump($post->is_published);
-            echo "</br>";
-        endforeach;
-        echo "</br>";
 
-        dump('No published, no likes');
-        $posts = Post::where('is_published', 0)
-            ->where('likes', 0)->get();
-        foreach ($posts as $post):
-            dump($post->title);
-            dump($post->content);
-            dump($post->image);
-            dump($post->likes);
-            dump($post->is_published);
-        endforeach;
-        echo "</br>";
+        return view('posts', compact('posts'));
 
-        dd('end');
+        // dd('end');
         // echo "</br>";
         // return 'Create post';
     }
