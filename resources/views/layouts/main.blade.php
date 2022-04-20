@@ -33,6 +33,15 @@ declare(strict_types = 1);
                             <a class="nav-link" href="{{ route('post.index') }}">Posts</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('article.index') }}">Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ route('categories.index') }}">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ route('comments.index') }}">Comments</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('about.index') }}">About</a>
                         </li>
                         <li class="nav-item">

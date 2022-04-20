@@ -5,50 +5,66 @@ declare(strict_types = 1);
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use JetBrains\PhpStorm\NoReturn;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 //
 
 class ArticleController extends Controller
 {
-    #[NoReturn] public function index(): void
+    public function index(): Factory|View|Application
     {
-        $article_1 = Article::find(1);
-        dump($article_1);
-        echo "</br>";
-        $article_2 = Article::find(2);
-        dump($article_2);
-        echo "</br>";
-        dump($article_2->type);
-        echo "</br>";
-        dump($article_2->breed);
-        echo "</br>";
-        dd($article_2->description);
-        // return 'Create post';
+        $articles = Article::all();
+        return view('article.index', compact('articles'));
     }
 
-    public function create()
+    public function create(): Factory|View|Application
     {
-        $arrArticles = [
-            [
-                'title'       => 'Добавленная Статья 1',
-                'content'     => 'Содержание добавленной Статьи 1',
-                'category_id' => 2,
-                'tag_id'      => 1,
-            ],
-            [
-                'title'       => 'Добавленная Статья 2',
-                'content'     => 'Содержание добавленной Статьи 2',
-                'category_id' => 1,
-                'tag_id'      => 2,
-            ],
-        ];
-        foreach ($arrArticles as $article):
-            dump($article);
-            Article::create($article);
-        endforeach;
+        return view('article.create');
+    }
 
-        dd('created');
+    public function store(): RedirectResponse
+    {
+        $data = request()->validate([
+            'title'       => 'string',
+            'content'     => 'string',
+            'category_id' => 'integer',
+            'tag_id'      => 'integer',
+        ]);
+
+        Article::create($data);
+        return redirect()->route('article.index');
+    }
+
+    public function show(Article $article): Factory|View|Application
+    {
+        return view('article.show', compact('article'));
+    }
+
+    public function edit(Article $article): Factory|View|Application
+    {
+        return view('article.edit', compact('article'));
+    }
+
+    public function update(Article $article): RedirectResponse
+    {
+        $data = request()->validate([
+            'title'       => 'string',
+            'content'     => 'string',
+            'category_id' => 'integer',
+            'tag_id'      => 'integer',
+        ]);
+
+        $article->update($data);
+        return redirect()->route('article.show', compact('article'));
+    }
+
+    public function destroy(Article $article): RedirectResponse
+    {
+        $article->delete();
+        return redirect()->route('article.index');
     }
 
 
