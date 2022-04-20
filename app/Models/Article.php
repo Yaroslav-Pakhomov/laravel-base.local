@@ -19,8 +19,8 @@ class Article extends Model
     // "Мягкое" удаление
     use SoftDeletes;
 
-
     protected $table = 'articles';
+
+    // Разрешённые поля для ввода
     public $fillable = ['title', 'content', 'category_id', 'tag_id'];
-    // public $guarded = [];
 }
