@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -18,10 +19,21 @@ class PostController extends Controller
 {
     public function index(): Application|View|Factory
     {
-        $posts = Post::all();
+        // $categories = Category::all();
+        $category = Category::find(1);
+
+        $post = Post::find(3);
+
+
+
         $i = 0;
 
-        return view('post.index', compact('posts', 'i'));
+        dd($post->category->title);
+        // dd($category->posts);
+
+        // $posts = Post::all();
+
+        // return view('post.index', compact('posts', 'i'));
     }
 
     public function create(): Factory|View|Application
