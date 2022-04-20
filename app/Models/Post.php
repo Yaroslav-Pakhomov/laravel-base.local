@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static create(array $array)
  * @method static firstOrCreate(array $array, array $array1)
  * @method static updateOrCreate(string[] $array, array $array1)
+ * @property mixed $id
  */
 class Post extends Model
 {
@@ -28,6 +29,8 @@ class Post extends Model
      * $fillable указываем, что разрешаем заполнять,
      * а в $guarded что запрещаем.
      */
+
+    // Запрещённые поля для ввода
     public $guarded = [];
     // public $guarded = false;
     // public $fillable = ['title', 'content', 'image', 'likes', 'is_published'];

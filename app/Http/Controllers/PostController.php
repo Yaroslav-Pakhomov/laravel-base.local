@@ -8,6 +8,7 @@ use App\Models\Post;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use JetBrains\PhpStorm\NoReturn;
 
 /**
@@ -15,122 +16,58 @@ use JetBrains\PhpStorm\NoReturn;
  */
 class PostController extends Controller
 {
-    #[NoReturn] public function index(): Application|View|Factory
+    public function index(): Application|View|Factory
     {
-        // $post = Post::find(1);
-        // dump($post);
-        // echo "</br>";
-        // echo "</br>";
-        // dump('All');
-        // $posts = Post::all();
-        // foreach ($posts as $post):
-        //     dump($post->title);
-        //     dump($post->content);
-        //     dump($post->image);
-        //     dump($post->likes);
-        //     dump($post->is_published);
-        //     echo '</br>';
-        // endforeach;
-        // echo '</br>';
-        // echo "</br>";
-        // // $posts = Post::where('is_published', 1)->first();
-        // // $posts = Post::where('is_published', 0)->first();
-        // dump('Is published');
-        // $posts = Post::where('is_published', 1)->get();
-        // foreach ($posts as $post):
-        //     dump($post->title);
-        //     dump($post->content);
-        //     dump($post->image);
-        //     dump($post->likes);
-        //     dump($post->is_published);
-        //     echo "</br>";
-        // endforeach;
-        // echo "</br>";
-        //
-        // dump('No published, no likes');
-        // $posts = Post::where('is_published', 0)
-        //     ->where('likes', 0)->get();
-        // foreach ($posts as $post):
-        //     dump($post->title);
-        //     dump($post->content);
-        //     dump($post->image);
-        //     dump($post->likes);
-        //     dump($post->is_published);
-        // endforeach;
-        // echo "</br>";
-        // echo "</br>";
-        // echo "</br>";
-
         $posts = Post::all();
+        $i = 0;
 
-        return view('posts', compact('posts'));
-
-        // dd('end');
-        // echo "</br>";
-        // return 'Create post';
+        return view('post.index', compact('posts', 'i'));
     }
 
-    #[NoReturn] public function create(): void
+    public function create(): Factory|View|Application
     {
-        $arrPosts = [
-            [
-                'title'        => 'Добавленный Пост 1',
-                'content'      => 'Содержание добавленного Поста 1',
-                'image'        => 'add_image_1',
-                'likes'        => 10,
-                'is_published' => 1
-            ],
-            [
-                'title'        => 'Добавленный Пост 2',
-                'content'      => 'Содержание добавленного Поста 2',
-                'image'        => 'add_image_2',
-                'likes'        => 10,
-                'is_published' => 1
-            ]
-        ];
-        foreach ($arrPosts as $post):
-            dump($post);
-            Post::create($post);
-            // Post::create([
-            //     'title'        => $post['title'],
-            //     'content'      => $post['content'],
-            //     'image'        => $post['image'],
-            //     'likes'        => $post['likes'],
-            //     'is_published' => $post['is_published'],
-            // ]);
-        endforeach;
-        dd('created');
+        return view('post.create');
     }
 
-    #[NoReturn] public function update(): void
+    public function store(): RedirectResponse
     {
-        $post = Post::find(6);
-        dump('Выбранный Пост');
-        dump($post);
-        $post->likes++;
-        $upPost = [
-            'title'        => 'Обновлённый Пост 1',
-            'content'      => 'Содержание обновлённого Поста 1',
-            'image'        => 'update_image_1',
-            'likes'        => $post->likes,
-            'is_published' => $post->is_published
-        ];
-        dump('Обновление Поста');
-        dump($upPost);
-        $post->update($upPost);
-        dd('Обновлено');
+        $data = request()->validate([
+            'title'   => 'string',
+            'content' => 'string',
+            'image'   => 'string',
+        ]);
+        Post::create($data);
+
+        return redirect()->route('post.index');
     }
 
-    #[NoReturn] public function delete(): void
+    public function show(Post $post): Factory|View|Application
     {
-        //Восстановление удалённого элемента
-        $post = Post::withTrashed()->find(13);
-        $post->restore();
+        return view('post.show', compact('post'));
+    }
 
-        // $post = Post::find(13);
-        dump($post->title);
+    public function edit(Post $post): Factory|View|Application
+    {
+        return view('post.edit', compact('post'));
+    }
+
+    public function update(Post $post): RedirectResponse
+    {
+        $data = request()->validate([
+            'title'   => 'string',
+            'content' => 'string',
+            'image'   => 'string',
+        ]);
+        $post->update($data);
+
+        return redirect()->route('post.show', $post->id);
+    }
+
+    public function destroy(Post $post): RedirectResponse
+    {
         $post->delete();
-        dd('Элемент удален');
+
+        return redirect()->route('post.index');
     }
 
     // Комбинированные запросы
