@@ -22,13 +22,22 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->string('image')->nullable();
-            $table->unsignedBigInteger('likes')->nullable();
+
+            // Подключаем категорию из таблицы 'categories'
+            // Неотрицательное 'category_id'
+            $table->unsignedBigInteger('category_id')->nullable();
+
+            // Делаем индексацию по 'category_id' для оптимизированного(ускоренного) поиска и даём название по конвенции ('post_category_idx')
+            $table->index('category_id', 'post_category_idx');
+
+            $table->bigInteger('likes')->nullable();
             $table->boolean('is_published')->default(1);
             $table->timestamps();
 
             // "Мягкое" удаление
             $table->softDeletes();
         });
+
     }
 
     /**

@@ -21,7 +21,17 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->unsignedInteger('category_id');
+
+
+            // Подключаем категорию из таблицы 'categories'
+            // Неотрицательное 'category_id'
+            // $table->unsignedBigInteger('category_id');
+            // // Делаем индексацию по 'category_id' для оптимизированного(ускоренного) поиска и даём название по конвенции ('article_category_idx')
+            // $table->index('category_id', 'article_category_idx');
+            // // Обозначаемся, что 'category_id' внешний ключ, даём название ('article_category_fk'), указываем на какую таблицу ссылаемся ('categories') и на какую колонку ссылается ('id')
+            // $table->foreign('category_id','article_category_fk')->on('categories')->references('id');
+
+
             $table->unsignedInteger('tag_id');
             $table->timestamps();
 
