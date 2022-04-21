@@ -22,6 +22,7 @@ class IndexController extends Controller
     {
         $posts = Post::all();
         $i = 0;
+
         return view('post.index', compact('posts', 'i'));
     }
 }
