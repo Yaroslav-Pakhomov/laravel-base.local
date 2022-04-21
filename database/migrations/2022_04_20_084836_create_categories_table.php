@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -23,7 +25,7 @@ class CreateCategoriesTable extends Migration
         });
 
         // Внешние ключи лучше писать в таблице к которой они привязываются, чтобы быть уверенным, что она уже точно создана и просто указать в названии к какой таблице относиться данный внешний ключ.
-        Schema::table('posts', static function(Blueprint $table) {
+        Schema::table('posts', static function (Blueprint $table) {
             // Обозначаемся, что 'category_id' внешний ключ, даём название ('post_category_fk'), ссылается на колонку ('id') в таблиц ('categories')
             $table->foreign('category_id', 'post_category_fk')->references('id')->on('categories');
         });

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -19,20 +20,20 @@ class PostController extends Controller
 {
     public function index(): Application|View|Factory
     {
-        // $categories = Category::all();
+        $categories = Category::all();
         $category = Category::find(1);
+        $tag = Tag::find(4);
+        $post = Post::find(5);
 
-        $post = Post::find(3);
-
-
-
-        $i = 0;
-
-        dd($post->category->title);
+        dd($tag->posts);
+        // dd($post->tags);
+        // dd($post->category->title);
         // dd($category->posts);
 
-        // $posts = Post::all();
 
+        // $posts = Post::all();
+        // $i = 0;
+        //
         // return view('post.index', compact('posts', 'i'));
     }
 
