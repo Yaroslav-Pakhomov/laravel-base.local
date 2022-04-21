@@ -22,8 +22,19 @@ class PostController extends Controller
     {
         $posts = Post::all();
         $i = 0;
-
         return view('post.index', compact('posts', 'i'));
+
+
+        // Работа по конвенции Laravel (проверка)
+        // $writer = Writer::find(3);
+        // $series = Series::find(1);
+        // $genre = Genre::find(3);
+        // dd($writer->genres);
+        // dd($genre->writers);
+        // dd($series->writers);
+        // dd($writer->series);
+        // Работа по конвенции Laravel (проверка) - конец
+
 
         // $categories = Category::all();
         // $category = Category::find(1);
