@@ -37,7 +37,6 @@ class CreatePostsTable extends Migration
             // "Мягкое" удаление
             $table->softDeletes();
         });
-
     }
 
     /**
