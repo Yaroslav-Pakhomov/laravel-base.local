@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\Post;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -15,7 +14,7 @@ use Illuminate\Contracts\View\View;
 /**
  *
  */
-class EditController extends Controller
+class EditController extends BaseController
 {
     /**
      * @param Post $post

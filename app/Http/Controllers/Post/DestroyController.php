@@ -4,14 +4,13 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\Post;
 
-use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse as RedirectResponseAlias;
 
 /**
  *
  */
-class DestroyController extends Controller
+class DestroyController extends BaseController
 {
     /**
      * @param Post $post
