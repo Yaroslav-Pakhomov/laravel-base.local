@@ -9,21 +9,43 @@ declare(strict_types = 1);
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" name="title" class="form-control" id="title" placeholder="Title">
+                <input
+                    {{--Передаётся атрибут name --}}
+                    value="{{ old('title') }}"
+                    type="text" name="title" class="form-control" id="title" placeholder="Title">
+
+                {{--Передаётся атрибут name у input--}}
+                @error('title')
+                <p class="text-danger">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">Content</label>
-                <textarea class="form-control" name="content" id="content" placeholder="Content"></textarea>
+                <textarea class="form-control" name="content" id="content"
+                          placeholder="Content">{{ old('content') }}</textarea>
+
+                {{--Передаётся атрибут name у textarea--}}
+                @error('content')
+                <p class="text-danger">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
-                <input type="text" name="image" class="form-control" id="image" placeholder="Image">
+                <input value="{{ old('image') }}" type="text" name="image" class="form-control" id="image"
+                       placeholder="Image">
+
+                {{--Передаётся атрибут name у textarea--}}
+                @error('image')
+                <p class="text-danger">{{ $message }}</p>
+                @enderror
             </div>
             <div>
                 <label for="category" class="form-label">Category</label>
                 <select class="form-select" id="category" name="category_id" aria-label="Default select example">
                     @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                        <option
+                            {{ old('category_id') == $category->id ? 'selected' : '' }}
+                            value="{{ $category->id }}">{{ $category->title }}</option>
                     @endforeach
                 </select>
             </div>
@@ -31,7 +53,9 @@ declare(strict_types = 1);
                 <label for="tags" class="form-label">Tags</label>
                 <select multiple class="form-select" id="tags" name="tags[]">
                     @foreach($tags as $tag)
-                        <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+                        <option
+                            {{ (is_array(old('tags')) && in_array($tag->id, old('tags'))) ? ' selected' : '' }}
+                            value="{{ $tag->id }}">{{ $tag->title }}</option>
                     @endforeach
                 </select>
             </div>
