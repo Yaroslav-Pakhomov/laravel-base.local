@@ -10,6 +10,8 @@ declare(strict_types = 1);
             <th scope="col">title</th>
             <th scope="col">image</th>
             <th scope="col">content</th>
+            <th scope="col">category</th>
+            {{--            <th scope="col">tags</th>--}}
         </tr>
         </thead>
         <tbody>
@@ -17,6 +19,8 @@ declare(strict_types = 1);
             <td>{{ $post->title }}</td>
             <td>{{ $post->image }}</td>
             <td>{{ $post->content }}</td>
+            <td>{{ $post->category->title }}</td>
+            {{--            <td>{{ $post->tags->title }}</td>--}}
         </tr>
         </tbody>
     </table>
@@ -39,7 +43,32 @@ declare(strict_types = 1);
                 <input type="text" name="image" class="form-control" id="image" placeholder="Image"
                        value="{{ $post->image }}">
             </div>
-            <button type="submit" class="btn btn-primary">Редактировать</button>
+            <div>
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" id="category" name="category_id" aria-label="Default select example">
+                    @foreach($categories as $category)
+                        <option
+                            {{ $category->id === $post->category->id ? 'selected' : ''}} value="{{ $category->id }}">
+
+                            {{ $category->title }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <label for="tags" class="form-label">Tags</label>
+                <select multiple class="form-select" id="tags" name="tags[]">
+                    @foreach($tags as $tag)
+                        <option
+                            @foreach($post->tags as $postTag)
+                            {{ $tag->id === $postTag->id ? 'selected' : ''}}
+                            @endforeach
+                            value="{{ $tag->id }}">{{ $tag->title }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Редактировать</button>
         </form>
     </div>
     <div>

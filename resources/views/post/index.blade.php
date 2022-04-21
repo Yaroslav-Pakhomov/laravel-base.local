@@ -5,9 +5,6 @@ declare(strict_types = 1);
 ?>
 @extends('layouts.main')
 @section('content')
-{{--    @foreach($categories as $category)--}}
-        @dump($categories->posts);
-{{--    @endforeach--}}
     <div class="alert alert-primary" role="alert">
         <a class="btn btn-primary" href="{{ route('post.create') }}">Создать</a>
     </div>
