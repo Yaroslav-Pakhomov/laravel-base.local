@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,27 +37,30 @@ Route::get('/page_tags', "PageController@tags");
 
 Route::get('/page_articles', 'PageController@articles');
 
-// Post
-// Страница с постами
-Route::get('/post', 'PostController@index')->name('post.index');
-// Создание поста
-Route::get('/post/create', 'PostController@create')->name('post.create');
-// Отправка формы поста
-Route::post('/post', 'PostController@store')->name('post.store');
-// Страница поста
-Route::get('/post/{post}', 'PostController@show')->name('post.show');
-// Страница редактирования поста
-Route::get('/post/{post}/edit', 'PostController@edit')->name('post.edit');
-// Обновление поста
-Route::patch('/post/{post}', 'PostController@update')->name('post.update');
-// Удаление поста
-Route::delete('/post/{post}', 'PostController@destroy')->name('post.delete');
+
+Route::group(['namespace' => 'Post'], static function () {
+    // Post
+    // Страница с постами
+    Route::get('/post', 'IndexController')->name('post.index');
+    // Создание поста
+    Route::get('/post/create', 'CreateController')->name('post.create');
+    // Отправка формы поста
+    Route::post('/post', 'StoreController')->name('post.store');
+    // Страница поста
+    Route::get('/post/{post}', 'ShowController')->name('post.show');
+    // Страница редактирования поста
+    Route::get('/post/{post}/edit', 'EditController')->name('post.edit');
+    // Обновление поста
+    Route::patch('/post/{post}', 'UpdateController')->name('post.update');
+    // Удаление поста
+    Route::delete('/post/{post}', 'DestroyController')->name('post.delete');
+
+});
 
 // Получить, либо создать пост
-Route::get('/post/first_or_create', 'PostController@firstOrCreate');
+Route::get('/post/first_or_create', 'PostController@first-or-create');
 // Обновить, либо создать пост
-Route::get('/post/update_or_create', 'PostController@updateOrCreate');
-
+Route::get('/post/update_or_create', 'PostController@update-or-create');
 
 // Article
 // Страница со статьями
