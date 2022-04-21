@@ -11,6 +11,8 @@ declare(strict_types = 1);
             <th scope="col">title</th>
             <th scope="col">image</th>
             <th scope="col">content</th>
+            <th scope="col">category</th>
+            {{--            <th scope="col">tags</th>--}}
         </tr>
         </thead>
         <tbody>
@@ -18,6 +20,8 @@ declare(strict_types = 1);
             <td>{{ $post->title }}</td>
             <td>{{ $post->image }}</td>
             <td>{{ $post->content }}</td>
+            <td>{{ $post->category->title }}</td>
+            {{--            <td>{{ $post->tags->title }}</td>--}}
         </tr>
         </tbody>
     </table>

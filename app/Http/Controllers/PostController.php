@@ -20,38 +20,53 @@ class PostController extends Controller
 {
     public function index(): Application|View|Factory
     {
-        $categories = Category::all();
-        $category = Category::find(1);
-        $tag = Tag::find(4);
-        $post = Post::find(5);
+        $posts = Post::all();
+        $i = 0;
 
-        dd($tag->posts);
+        return view('post.index', compact('posts', 'i'));
+
+        // $categories = Category::all();
+        // $category = Category::find(1);
+        // $tag = Tag::find(4);
+        // $post = Post::find(5);
+        //
+        // dd($tag->posts);
         // dd($post->tags);
         // dd($post->category->title);
         // dd($category->posts);
-
-
-        // $posts = Post::all();
-        // $i = 0;
-        //
-        // return view('post.index', compact('posts', 'i'));
     }
 
     public function create(): Factory|View|Application
     {
-        return view('post.create');
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('post.create', compact('categories', 'tags'));
     }
 
     public function store(): RedirectResponse
     {
         $data = request()->validate([
-            'title'   => 'string',
-            'content' => 'string',
-            'image'   => 'string',
+            'title'       => 'string',
+            'content'     => 'string',
+            'image'       => 'string',
+            'category_id' => '',
+            'tags'        => '',
         ]);
-        Post::create($data);
+        $tags = $data['tags'];
+        unset($data['tags']);
+
+        $post = Post::create($data);
+        // foreach ($tags as $tag):
+        //     PostTag::firstOrCreate([
+        //         'tag_id' => $tag,
+        //         'post_id' => $post->id,
+        //     ]);
+        // endforeach;
+        // Создаём привязки
+        $post->tags()->attach($tags);
 
         return redirect()->route('post.index');
+        // dd($tags, $data);
     }
 
     public function show(Post $post): Factory|View|Application
@@ -61,17 +76,26 @@ class PostController extends Controller
 
     public function edit(Post $post): Factory|View|Application
     {
-        return view('post.edit', compact('post'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('post.edit', compact('post', 'categories', 'tags'));
     }
 
     public function update(Post $post): RedirectResponse
     {
         $data = request()->validate([
-            'title'   => 'string',
-            'content' => 'string',
-            'image'   => 'string',
+            'title'       => 'string',
+            'content'     => 'string',
+            'image'       => 'string',
+            'category_id' => '',
+            'tags'        => '',
         ]);
+        $tags = $data['tags'];
+        unset($data['tags']);
         $post->update($data);
+        // $post = $post->fresh();
+        // Удаляем старые привязки и создаём новые
+        $post->tags()->sync($tags);
 
         return redirect()->route('post.show', $post->id);
     }
