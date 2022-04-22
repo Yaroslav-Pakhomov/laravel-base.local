@@ -39,4 +39,7 @@ declare(strict_types = 1);
         @endforeach
         </tbody>
     </table>
+    <div class="mt-3 mb-15 nav justify-content-center">
+        {{ $posts->links() }}
+    </div>
 @endsection

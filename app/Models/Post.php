@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static create(array $array)
  * @method static firstOrCreate(array $array, array $array1)
  * @method static updateOrCreate(string[] $array, array $array1)
+ * @method static paginate(int $int)
  * @property mixed $id
  */
 class Post extends Model

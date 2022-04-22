@@ -19,7 +19,7 @@ class IndexController extends BaseController
      */
     public function __invoke(): Factory|View|Application
     {
-        $posts = Post::all();
+        $posts = Post::paginate(10);
         $i = 0;
 
         return view('post.index', compact('posts', 'i'));
