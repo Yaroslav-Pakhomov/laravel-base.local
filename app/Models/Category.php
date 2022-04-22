@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @method static find(int $int)
  * @method static create(array $data)
+ * @method static get()
  */
 class Category extends Model
 {
