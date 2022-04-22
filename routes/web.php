@@ -54,7 +54,6 @@ Route::group(['namespace' => 'Post'], static function () {
     Route::patch('/post/{post}', 'UpdateController')->name('post.update');
     // Удаление поста
     Route::delete('/post/{post}', 'DestroyController')->name('post.delete');
-
 });
 
 // Получить, либо создать пост

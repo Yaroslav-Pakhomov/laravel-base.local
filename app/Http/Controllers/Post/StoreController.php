@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\Post;
 
+use App\Http\Requests\Post\FilterRequest;
 use App\Http\Requests\Post\StoreRequest;
 use Illuminate\Http\RedirectResponse;
 
@@ -13,7 +14,7 @@ use Illuminate\Http\RedirectResponse;
 class StoreController extends BaseController
 {
     /**
-     * @param StoreRequest $request
+     * @param FilterRequest $request
      * @return RedirectResponse
      */
     public function __invoke(StoreRequest $request): RedirectResponse

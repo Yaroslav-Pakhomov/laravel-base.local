@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Models;
 
+use App\Models\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static firstOrCreate(array $array, array $array1)
  * @method static updateOrCreate(string[] $array, array $array1)
  * @method static paginate(int $int)
+ * @method static filter(mixed $filter)
  * @property mixed $id
  */
 class Post extends Model
@@ -25,6 +27,7 @@ class Post extends Model
 
     // "Мягкое" удаление
     use SoftDeletes;
+    use Filterable;
 
     protected $table = 'posts';
     // Разрешаем добавление данных, способы разрешения:
