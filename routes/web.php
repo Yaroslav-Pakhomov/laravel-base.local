@@ -57,9 +57,10 @@ Route::group(['namespace' => 'Post'], static function () {
 });
 
 // Получить, либо создать пост
-Route::get('/post/first_or_create', 'PostController@first-or-create');
+Route::get('/post/first_or_create', 'PostController@firstOrCreate');
 // Обновить, либо создать пост
-Route::get('/post/update_or_create', 'PostController@update-or-create');
+Route::get('/post/update_or_create', 'PostController@updateOrCreate');
+
 
 // Article
 // Страница со статьями
@@ -134,3 +135,11 @@ Route::get('/contacts', 'ContactController@index')->name('contact.index');
 
 // Main
 Route::get('/main', 'MainController@index')->name('main.index');
+
+
+// Admin
+Route::group(['namespace' => 'Admin', 'prefix' => '/admin'], static function () {
+    Route::group(['namespace' => 'Post'], static function () {
+        Route::get('/post', 'IndexController')->name('admin.post.index');
+    });
+});
