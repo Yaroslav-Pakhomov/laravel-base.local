@@ -17,10 +17,10 @@ declare(strict_types = 1);
                 <label for="content" class="form-label">Content</label>
                 <textarea class="form-control" name="content" id="content" placeholder="Content"></textarea>
             </div>
-            <div class="mb-3">
-                <label for="category_id" class="form-label">Category</label>
-                <input type="text" name="category_id" class="form-control" id="category_id" placeholder="Category">
-            </div>
+            {{--            <div class="mb-3">--}}
+            {{--                <label for="category_id" class="form-label">Category</label>--}}
+            {{--                <input type="text" name="category_id" class="form-control" id="category_id" placeholder="Category">--}}
+            {{--            </div>--}}
             <div class="mb-3">
                 <label for="tag_id" class="form-label">Tag</label>
                 <input type="text" name="tag_id" class="form-control" id="tag_id" placeholder="Tag">

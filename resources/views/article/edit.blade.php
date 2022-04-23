@@ -11,7 +11,7 @@ declare(strict_types = 1);
         <tr>
             <th scope="col">Title</th>
             <th scope="col">Content</th>
-            <th scope="col">category</th>
+            {{--            <th scope="col">category</th>--}}
             <th scope="col">tag</th>
         </tr>
         </thead>
@@ -19,7 +19,7 @@ declare(strict_types = 1);
         <tr>
             <td>{{ $article->title }}</td>
             <td>{{ $article->content }}</td>
-            <td>{{ $article->category_id }}</td>
+            {{--            <td>{{ $article->category_id }}</td>--}}
             <td>{{ $article->tag_id }}</td>
         </tr>
         </tbody>
@@ -38,11 +38,11 @@ declare(strict_types = 1);
                 <textarea class="form-control" name="content" id="content"
                           placeholder="Content">{{ $article->content }}</textarea>
             </div>
-            <div class="mb-3">
-                <label for="category_id" class="form-label">Category</label>
-                <input type="text" name="category_id" class="form-control" id="category_id" placeholder="Category"
-                       value="{{ $article->category_id }}">
-            </div>
+            {{--            <div class="mb-3">--}}
+            {{--                <label for="category_id" class="form-label">Category</label>--}}
+            {{--                <input type="text" name="category_id" class="form-control" id="category_id" placeholder="Category"--}}
+            {{--                       value="{{ $article->category_id }}">--}}
+            {{--            </div>--}}
             <div class="mb-3">
                 <label for="tag_id" class="form-label">Tag</label>
                 <input type="text" name="tag_id" class="form-control" id="tag_id" placeholder="Tag"

@@ -38,8 +38,8 @@ Route::get('/page_tags', "PageController@tags");
 Route::get('/page_articles', 'PageController@articles');
 
 
+// Post
 Route::group(['namespace' => 'Post'], static function () {
-    // Post
     // Страница с постами
     Route::get('/post', 'IndexController')->name('post.index');
     // Создание поста
@@ -54,63 +54,68 @@ Route::group(['namespace' => 'Post'], static function () {
     Route::patch('/post/{post}', 'UpdateController')->name('post.update');
     // Удаление поста
     Route::delete('/post/{post}', 'DestroyController')->name('post.delete');
+    // Получить, либо создать пост
+    Route::get('/post/first_or_create', 'FirstOrCreateController')->name('post.first_or_create');
+    // Обновить, либо создать пост
+    Route::get('/post/update_or_create', 'UpdateOrCreateController')->name('post.update_or_create');
 });
-
-// Получить, либо создать пост
-Route::get('/post/first_or_create', 'PostController@firstOrCreate');
-// Обновить, либо создать пост
-Route::get('/post/update_or_create', 'PostController@updateOrCreate');
 
 
 // Article
-// Страница со статьями
-Route::get('/article', 'ArticleController@index')->name('article.index');
-// Страница создания статьи
-Route::get('/article/create', 'ArticleController@create')->name('article.create');
-// Отправка формы создания поста
-Route::post('/article', 'ArticleController@store')->name('article.store');
-// Страница статьи
-Route::get('/article/{article}', 'ArticleController@show')->name('article.show');
-// Редактирование статьи
-Route::get('/article/{article}/edit', 'ArticleController@edit')->name('article.edit');
-// Отправка формы редактирования статьи
-Route::patch('/article/{article}', 'ArticleController@update')->name('article.update');
-// Удаление статьи
-Route::delete('/article/{article}', 'ArticleController@destroy')->name('article.delete');
+Route::group(['namespace' => 'Article'], static function () {
+    // Страница со статьями
+    Route::get('/article', 'IndexController')->name('article.index');
+    // Страница создания статьи
+    Route::get('/article/create', 'CreateController')->name('article.create');
+    // Отправка формы создания поста
+    Route::post('/article', 'StoreController')->name('article.store');
+    // Страница статьи
+    Route::get('/article/{article}', 'ShowController')->name('article.show');
+    // Редактирование статьи
+    Route::get('/article/{article}/edit', 'EditController')->name('article.edit');
+    // Отправка формы редактирования статьи
+    Route::patch('/article/{article}', 'UpdateController')->name('article.update');
+    // Удаление статьи
+    Route::delete('/article/{article}', 'DestroyController')->name('article.delete');
+});
 
 
 //Categories
-// Страница с категориями
-Route::get('/categories', 'CategoryController@index')->name('categories.index');
-// Страница создания категории
-Route::get('/categories/create', 'CategoryController@create')->name('categories.create');
-// Отправка формы создания категории
-Route::post('/categories', 'CategoryController@store')->name('categories.store');
-// Страница категории
-Route::get('/categories/{category}', 'CategoryController@show')->name('categories.show');
-// Редактирование категории
-Route::get('/categories/{category}/edit', 'CategoryController@edit')->name('categories.edit');
-// Отправка формы редактирования категории
-Route::patch('/categories/{category}', 'CategoryController@update')->name('categories.update');
-// Удаление категории
-Route::delete('/categories/{category}', 'CategoryController@destroy')->name('categories.delete');
+Route::group(['namespace' => 'Category'], static function () {
+    // Страница с категориями
+    Route::get('/categories', 'IndexController')->name('categories.index');
+    // Страница создания категории
+    Route::get('/categories/create', 'CreateController')->name('categories.create');
+    // Отправка формы создания категории
+    Route::post('/categories', 'StoreController')->name('categories.store');
+    // Страница категории
+    Route::get('/categories/{category}', 'ShowController')->name('categories.show');
+    // Редактирование категории
+    Route::get('/categories/{category}/edit', 'EditController')->name('categories.edit');
+    // Отправка формы редактирования категории
+    Route::patch('/categories/{category}', 'UpdateController')->name('categories.update');
+    // Удаление категории
+    Route::delete('/categories/{category}', 'DestroyController')->name('categories.delete');
+});
 
 
 //Comments
-// Страница с комментариями
-Route::get('/comments', 'CommentController@index')->name('comments.index');
-// Страница с формой создания комментария
-Route::get('/comments/create', 'CommentController@create')->name('comments.create');
-// Отправка формы создания комментария
-Route::post('/comments', 'CommentController@store')->name('comments.store');
-// Страница комментария
-Route::get('/comments/{comment}', 'CommentController@show')->name('comments.show');
-// Страница с формой редактирования комментария
-Route::get('/comments/{comment}/edit', 'CommentController@edit')->name('comments.edit');
-// Отправка формы редактирования комментария
-Route::patch('/comments/{comment}', 'CommentController@update')->name('comments.update');
-// Удаление комментария
-Route::delete('/comments/{comment}', 'CommentController@destroy')->name('comments.delete');
+Route::group(['namespace' => 'Comment'], static function () {
+    // Страница с комментариями
+    Route::get('/comments', 'IndexController')->name('comments.index');
+    // Страница с формой создания комментария
+    Route::get('/comments/create', 'CreateController')->name('comments.create');
+    // Отправка формы создания комментария
+    Route::post('/comments', 'StoreController')->name('comments.store');
+    // Страница комментария
+    Route::get('/comments/{comment}', 'ShowController')->name('comments.show');
+    // Страница с формой редактирования комментария
+    Route::get('/comments/{comment}/edit', 'EditController')->name('comments.edit');
+    // Отправка формы редактирования комментария
+    Route::patch('/comments/{comment}', 'UpdateController')->name('comments.update');
+    // Удаление комментария
+    Route::delete('/comments/{comment}', 'DestroyController')->name('comments.delete');
+});
 
 
 // Animal
