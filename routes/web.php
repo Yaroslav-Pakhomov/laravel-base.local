@@ -148,3 +148,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => '/admin'], static function () 
         Route::get('/post', 'IndexController')->name('admin.post.index');
     });
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
