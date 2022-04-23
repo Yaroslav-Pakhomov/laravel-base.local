@@ -2,6 +2,7 @@
 
 declare(strict_types = 1);
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -143,8 +144,9 @@ Route::get('/main', 'MainController@index')->name('main.index');
 
 
 // Admin
-Route::group(['namespace' => 'Admin', 'prefix' => '/admin'], static function () {
-    Route::group(['namespace' => 'Post'], static function () {
+Route::group(['namespace' => 'Admin'], static function () {
+    Route::get('/admin', 'IndexController')->name('admin.index');
+    Route::group(['namespace' => 'Post', 'prefix' => '/admin'], static function () {
         Route::get('/post', 'IndexController')->name('admin.post.index');
     });
 });

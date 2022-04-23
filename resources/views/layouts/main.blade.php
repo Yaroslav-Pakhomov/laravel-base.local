@@ -47,6 +47,12 @@ declare(strict_types = 1);
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact.index') }}">Contacts</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.index') }}">Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">Auth</a>
+                        </li>
                     </ul>
                 </div>
             </div>
