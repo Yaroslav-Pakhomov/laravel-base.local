@@ -144,7 +144,7 @@ Route::get('/main', 'MainController@index')->name('main.index');
 
 
 // Admin
-Route::group(['namespace' => 'Admin'], static function () {
+Route::group(['namespace' => 'Admin', 'middleware' => 'admin'], static function () {
     Route::get('/admin', 'IndexController')->name('admin.index');
     Route::group(['namespace' => 'Post', 'prefix' => '/admin'], static function () {
         Route::get('/post', 'IndexController')->name('admin.post.index');
