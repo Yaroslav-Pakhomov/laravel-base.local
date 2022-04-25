@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Post;
 
 use App\Http\Filters\PostFilter;
 use App\Http\Requests\Post\FilterRequest;
+use App\Http\Resources\Post\PostResource;
 use App\Models\Post;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -38,6 +39,9 @@ class IndexController extends BaseController
         $i = 0;
 
         return view('post.index', compact('posts', 'i'));
+
+        // Работа с массивом, ответом
+        // return PostResource::collection($posts);
 
         // $query = Post::query();
         // if (isset($data['category_id'])):

@@ -30,6 +30,7 @@ class StoreRequest extends FormRequest
         'content'     => "string",
         'image'       => "string",
         'category_id' => "string",
+        'likes'       => "string",
         'tags'        => "string"
     ])] public function rules(): array
     {
@@ -38,6 +39,7 @@ class StoreRequest extends FormRequest
             'content'     => 'string',
             'image'       => 'string',
             'category_id' => '',
+            'likes'       => '',
             'tags'        => '',
         ];
     }
